@@ -5,8 +5,10 @@
 	</head>
 	
 	<body>
-		<canvas id="image-bumber-bubbles-widget" width="800px" height="800px">
-			<img src="https://cdn.pixabay.com/photo/2017/11/15/20/17/beach-2952391_960_720.jpg">
+		<canvas id="image-bumber-bubbles-widget" width="800px" height="800px"
+			onmousemove="getBumperBubblesMousePosition(event)"
+			onclick="getBumperBubblesClickedElement(event)">
+			<img alt="/testAlt" src="https://cdn.pixabay.com/photo/2017/11/15/20/17/beach-2952391_960_720.jpg">
 			<img src="https://cdn.pixabay.com/photo/2018/02/07/14/27/pension-3137209_960_720.jpg">
 			<img src="https://cdn.pixabay.com/photo/2017/12/12/12/55/ufo-3014638_960_720.jpg">
 			<img src="https://cdn.pixabay.com/photo/2018/01/31/12/16/architecture-3121009_960_720.jpg">
@@ -24,11 +26,16 @@
 			<img src="https://cdn.pixabay.com/photo/2017/06/17/10/55/hot-air-balloon-2411851_960_720.jpg">
 		</canvas>
 		
+		<script type="text/javascript" src="js/external/myAlerts.js"></script>
+		<script type="text/javascript" src="js/external/Commands.js"></script>
 		<script type="text/javascript" src="js/Bubbles.js"></script>
 		<script type="text/javascript" src="js/Grid.js"></script>
-		<script type="text/javascript" src="js/ImageBumberBubbles.js"></script>
+		<script type="text/javascript" src="js/ImageBumperBubbles.js"></script>
 		<script type="text/javascript" src="js/Render.js"></script>
 		<script type="text/javascript" src="js/Images.js"></script>
+		<script type="text/javascript" src="js/UserInputs.js"></script>
+		<script type="text/javascript" src="js/Events.js"></script>
+		<script type="text/javascript" src="js/MouseTracker.js"></script>
 		<script type="text/javascript" src="js/zzz_boot.js"></script>
 	</body>
 </html>

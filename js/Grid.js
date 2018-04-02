@@ -30,14 +30,14 @@ function DrawGrid()
 		ctx.moveTo(moveX, 0);
 		ctx.lineTo(moveX, canvas.height);
 		ctx.stroke();
-		moveX += 100;
+		moveX += GridSize;
 	}
 	while(moveY < canvas.height)
 	{
 		ctx.moveTo(0, moveY);
 		ctx.lineTo(canvas.width, moveY);
 		ctx.stroke();
-		moveY += 100;
+		moveY += GridSize;
 	}
 	
 	// Draw Circle Vectors

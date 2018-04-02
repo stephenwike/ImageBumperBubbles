@@ -1,10 +1,12 @@
+var circlesList = [];
+
 function InitializeBubbles()
 {
 	circlesList = [];
 	circlesListCount = 0;
-	for (var index = 0; index < CircleCount; ++index)
+	for (var index = 0; index < ImageCount; ++index)
 	{
-		var circle = MakeCircle();
+		var circle = MakeCircle(Images[index]);
 		if(!BallCollision(circle, 0))
 		{
 			circlesList.push(circle);
@@ -17,7 +19,7 @@ function InitializeBubbles()
 	}
 }
 
-function MakeCircle()
+function MakeCircle(img)
 {
 	var canvas = getCanvas();
 	// Determine Vector Coordinates, Speed, Magnitude, Radius, and Collision Area
@@ -39,11 +41,13 @@ function MakeCircle()
 	
 	// Make Circle
 	var newCircle = {
+		Image: img,
 		Vec: newVector,
 		Radius: radius,
 		CollisionX: XCol,
 		CollisionY: YCol,
-		isHit: false
+		isHit: false,
+		isFocused: false
 	};
 	
 	return newCircle;
@@ -53,7 +57,7 @@ function UpdateCircles()
 {
 	try
 	{
-		for (var index = 0; index < CircleCount; ++index)
+		for (var index = 0; index < ImageCount; ++index)
 		{
 			UpdatePoint(circlesList[index]);
 		}
@@ -142,10 +146,10 @@ function BallCollision(circle, index)
 	{
 		if (circlesList[index] != circle)
 		{
-			var testX = circlesList[index].CollisionX & circle.CollisionX;
-			var testY = circlesList[index].CollisionY & circle.CollisionY;
-			if (testX && testY) //Detects a potential collision
-			{	
+			//var testX = circlesList[index].CollisionX & circle.CollisionX;
+			//var testY = circlesList[index].CollisionY & circle.CollisionY;
+			//if (testX && testY) //Detects a potential collision
+			//{	
 				var dx = circlesList[index].Vec.Xcoord - circle.Vec.Xcoord;
 				var dy = circlesList[index].Vec.Ycoord - circle.Vec.Ycoord;
 				var distance = Math.sqrt(dx * dx + dy * dy);
@@ -153,7 +157,7 @@ function BallCollision(circle, index)
 				if (distance < circlesList[index].Radius + circle.Radius) {
 					return index + 1; // collision detected!
 				}
-			}
+			//}
 		}
 	}
 	return 0;
@@ -189,9 +193,13 @@ function ResolveCollision(circle1, circle2)
 	
 	//Get Velocities
 	var v1xi = circle1.Vec.Xlength;
-	var v2xi = circle2.Vec.Xlength;
 	var v1yi = circle1.Vec.Ylength;
+	var v2xi = circle2.Vec.Xlength;
 	var v2yi = circle2.Vec.Ylength;
+	
+	// Get vector magnitudes
+	var v1i = Math.sqrt ( v1xi * v1xi + v1yi * v1yi );
+	var v2i = Math.sqrt ( v2xi * v2xi + v2yi * v2yi );
 	
 	var v1xf = ((m1 - m2) / (m1 + m2)) * v1xi + ((2 * m2) / (m1 + m2)) * v2xi;
 	var v1yf = ((m1 - m2) / (m1 + m2)) * v1yi + ((2 * m2) / (m1 + m2)) * v2yi;

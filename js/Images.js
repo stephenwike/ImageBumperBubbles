@@ -1,3 +1,6 @@
+// Fields
+var ImageCount;
+
 // Collections
 var Images = [];
 
@@ -6,13 +9,15 @@ function LoadImages()
 {
 	var canvas = getCanvas();
 	var img = canvas.firstChild;
-	CircleCount = 0;
+	
+	// Get collections of Images
+	ImageCount = 0;
 	for (var img = canvas.firstChild; img != null; img = img.nextSibling)
 	{
 		if (img.nodeName === "IMG")
 		{
 			Images.push(img);
-			++CircleCount;
-		}	
+			++ImageCount;
+		}
 	}
 }
